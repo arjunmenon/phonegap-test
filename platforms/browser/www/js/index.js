@@ -54,7 +54,7 @@ var app = {
         console.log(devices);
         var x = document.getElementById('upnp');
         var html_logger = document.getElementById('upnp3');
-        html_logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(devices) : devices) + '<br>';
+        // html_logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(devices) : devices) + '<br>';
         x.innerHTML = devices;       
         
     }
