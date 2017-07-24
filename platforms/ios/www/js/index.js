@@ -51,11 +51,12 @@ var app = {
     var serviceType = "ssdp:all";
     
     var success = function(devices) {
-        console.log(devices);
+        
         var x = document.getElementById('upnp');
         var html_logger = document.getElementById('upnp3');
         // html_logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(devices) : devices) + '<br>';
         x.innerHTML = devices;       
+        console.log(devices);
         
     }
     
