@@ -16,6 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+(function () {
+    var old_logger = console.log;
+    var html_logger = document.getElementById('upnp2');
+    console.log = function(msg) {
+      old_logger.call(this, arguments);
+      if (typeof msg == 'object') {
+        html_logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(msg) : msg) + '<br>';
+      } else {
+        html_logger.innerHTML += msg + '<br>';
+      }
+    }
+})();
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -37,15 +51,17 @@ var app = {
     var serviceType = "ssdp:all";
     
     var success = function(devices) {
+        console.log(devices);
         var x = document.getElementById('upnp');
         var y = document.getElementById('upnp2');
-        x.innerHTML = devices;
-        var output = '';
-            for (property in devices) {
-                output += property + ': ' + devices[property]+"; <br>\n";
-              }
-        y.innerHTML = output;
-        console.log(devices);
+        x.innerHTML = devices.outerHTML;
+        y.innerHTML = generateListFromArray(devices).outerHTML;
+        // var output = '';
+        //     for (property in devices) {
+        //         output += property + ': ' + devices[property]+"; <br>\n";
+        //       }
+        // y.innerHTML = output;
+        
     }
     
     var failure = function() {
