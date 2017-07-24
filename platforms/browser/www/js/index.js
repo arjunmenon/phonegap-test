@@ -38,7 +38,13 @@ var app = {
     
     var success = function(devices) {
         var x = document.getElementById('upnp');
+        var y = document.getElementById('upnp2');
         x.innerHTML = devices;
+        var output = '';
+            for (property in devices) {
+                output += property + ': ' + devices[property]+"; <br>\n";
+              }
+        y.innerHTML = output;
         console.log(devices);
     }
     
